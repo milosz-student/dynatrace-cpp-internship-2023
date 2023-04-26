@@ -1,6 +1,5 @@
 #include "headerfile.h"
 
-
 date::year_month_day parse_date(const std::string & date_str) {
     int year;
     unsigned int month, day;
@@ -20,4 +19,11 @@ bool valid_date(const std::string & date_str) {
     unsigned int tmp;
     int output = sscanf(date_str.c_str(), "%d-%d-%d", & tmp, & tmp, & tmp);
     return output == 3;
+}
+
+date::year_month_day extractDateFromJson(std::string date_str,json file){
+    date::year_month_day date;
+    if ((file.contains(date_str))&&(!file[date_str].is_boolean())&&(valid_date(file[date_str])))
+        date = parse_date(file[date_str]);
+    return date;
 }

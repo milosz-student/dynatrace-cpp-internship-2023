@@ -3,12 +3,12 @@
 
 class OS {
     public: std::string name = "";
-    std::vector < Version > Versions = {};
+    std::vector < Version > versions = {};
     Version longest;
     Version shortest;
 
     OS(std::string n) {
-        name = n;
+        this->name = n;
     }
 
     void print() {
@@ -24,14 +24,12 @@ class OS {
         for (const auto & version: product) {
             Version ver = Version();
             ver.load(version);
-            if (ver.check_load()) {
-                Versions.push_back(ver);
-            }
+            this->versions.push_back(ver);
         }
-        sort(Versions.begin(), Versions.end(), comparerDescending);
-        if (!Versions.empty()) {
-            longest = Versions.front();
-            shortest = Versions.back();
+        sort(versions.begin(), versions.end(), comparerDescending);
+        if (!versions.empty()) {
+            this->longest = versions.front();
+            this->shortest = versions.back();
         }
     }
 };

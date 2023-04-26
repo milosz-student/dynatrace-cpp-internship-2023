@@ -1,7 +1,6 @@
 #pragma once
 #include "os.h"
 
-using json = nlohmann::json;
 
 class OSStore {
     public: std::vector < OS > listOS = {};
@@ -19,7 +18,7 @@ class OSStore {
 
             OS os = OS(product["name"]);
             os.load(product["versions"]);
-            listOS.push_back(os);
+            this->listOS.push_back(os);
         }
 
     }
